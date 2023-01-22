@@ -1,25 +1,4 @@
-<!DOCTYPE html>
-<html lang="ru">
-  <head>
-    <title>Escape Room</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="description" content="Escape Room — квесты в Санкт-Петербурге">
-    <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
-    <link rel="manifest" href="favicon/site.webmanifest" crossorigin="use-credentials">
-    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#141414">
-    <link rel="shortcut icon" href="favicon/favicon.ico">
-    <meta name="msapplication-TileColor" content="#141414">
-    <meta name="theme-color" content="#141414">
-    <link rel="preload" href="fonts/raleway-800.woff2" as="font" crossorigin="anonymous">
-    <link rel="preload" href="fonts/raleway-600.woff2" as="font" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/style.min.css">
-  </head>
-  <body>
-    <div class="visually-hidden"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><defs>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><defs>
 <clipPath id="clip0_6337_1093">
 <rect width="14" height="14" fill="white"/>
 </clipPath>
@@ -92,8 +71,3 @@
   <path fill-rule="evenodd" clip-rule="evenodd" d="M37.5379 15.5626L28.3569 10.331L16.8252 17.0268L25.8061 22.1771L37.5379 15.5626ZM28.354 9.62539L15.6014 17.0301L25.8035 22.8806L38.7832 15.5626L38.247 15.2627L28.354 9.62539Z" fill="white"/>
   <path d="M12.3868 33.9267L12.1234 33.7743L11.9688 22.1189L4.23989 17.6243M12.3868 33.9267L22.5849 28.1296M12.3868 33.9267L22.5849 39.225M23.0984 27.8377V39.4115L22.5849 39.225M23.0984 27.8377L4.23989 17.0301V13.9676L4.70363 13.6629L25.8808 1.70271L46.7286 14.12V21.5078H47.4006L47.4253 13.7106L25.8813 1L4.37806 13.1444L3.62158 13.6415V38.7831L26.3453 50.9999L28.6632 49.7471V49.7591L29.1178 49.5014L29.3588 49.3711V49.3648L47.3458 38.8506L47.3719 31.3571H46.7286V38.4975L29.2815 48.7055V42.535L42.0334 35.4537L28.8634 27.8377M23.0984 27.8377L22.5849 28.1296M28.8634 27.8377L28.7405 27.9085V49.0103L26.3445 50.3053L4.23989 38.4213V17.6243M28.8634 27.8377L29.1302 28.3991L38.474 22.9307L38.1584 22.4067L28.8634 27.8377ZM4.23989 17.6243V17.3957M22.5849 28.1296V39.225M38.247 15.2627L28.354 9.62539L15.6014 17.0301L25.8035 22.8806L38.7832 15.5626L38.247 15.2627ZM21.8645 27.8356L12.7318 33.027L12.5925 22.5218L21.8645 27.8356ZM40.8269 35.4708L29.3588 41.7721V28.8234L40.8269 35.4708ZM28.3569 10.331L37.5379 15.5626L25.8061 22.1771L16.8252 17.0268L28.3569 10.331ZM12.2887 33.8917L28.9058 42.5L29.1935 41.9605L12.5764 33.3522L12.2887 33.8917ZM38.7832 16.1533V34.0652H39.4015V16.1533H38.7832Z" stroke="white" stroke-width="1.5"/>
 </g></symbol></svg>
-    </div>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
-  </body>
-</html>
