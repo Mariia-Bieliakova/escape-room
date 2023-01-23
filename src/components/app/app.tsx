@@ -1,5 +1,5 @@
 import {Route, Routes} from 'react-router-dom';
-import { AppRoute, AuthorizationStatus } from '../../const';
+import { AppRoute } from '../../const';
 import Booking from '../../pages/booking/booking';
 import Contact from '../../pages/contacts/contacts';
 import Login from '../../pages/login/login';
@@ -12,42 +12,40 @@ import { HelmetProvider } from 'react-helmet-async';
 import HistoryRouter from '../history-route/history-route';
 import browserHistory from '../../browser-history';
 
-const authStatus = AuthorizationStatus.NoAuth;
-
 function App(): JSX.Element {
   return (
     <HelmetProvider>
       <HistoryRouter history={browserHistory}>
         <Routes>
           <Route path={AppRoute.Root}>
-            <Route index element={<Main authStatus={authStatus}/>} />
+            <Route index element={<Main />} />
             <Route
               path={AppRoute.Login}
-              element={<Login authStatus={authStatus}/>}
+              element={<Login />}
             />
             <Route
               path={AppRoute.Contacts}
-              element={<Contact authStatus={authStatus}/>}
+              element={<Contact />}
             />
             <Route
               path={AppRoute.Reservations}
               element={
-                <PrivateRoute authorizationStatus={authStatus}>
-                  <MyQuests authStatus={authStatus}/>
+                <PrivateRoute>
+                  <MyQuests />
                 </PrivateRoute>
               }
             />
             <Route
               path={AppRoute.Booking}
               element={
-                <PrivateRoute authorizationStatus={authStatus}>
-                  <Booking authStatus={authStatus}/>
+                <PrivateRoute>
+                  <Booking />
                 </PrivateRoute>
               }
             />
             <Route
               path={AppRoute.Quest}
-              element={<Quest authStatus={authStatus}/>}
+              element={<Quest />}
             />
           </Route>
           <Route path={AppRoute.NotFound} element={<PageNotFound />} />

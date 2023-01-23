@@ -1,17 +1,22 @@
-import { ReactNode } from 'react';
+import { MouseEvent, ReactNode } from 'react';
 import { Link } from 'react-router-dom';
 import { AppRoute, AuthorizationStatus, PageLink } from '../../const';
 import Footer from '../footer/footer';
 import Logo from '../logo/logo';
 import cn from 'classnames';
+import { useAppDispatch, useAppSelector } from '../../hooks';
+import { getAuthorizationStatus } from '../../store/user/selectors';
+import { logoutAction } from '../../store/api-actions';
 
 type LayoutProps = {
   children: ReactNode;
   page: PageLink;
-  authStatus: AuthorizationStatus;
 }
 
-function Layout({children, page, authStatus}: LayoutProps): JSX.Element {
+function Layout({children, page}: LayoutProps): JSX.Element {
+  const authStatus = useAppSelector(getAuthorizationStatus);
+  const dispatch = useAppDispatch();
+
   const questsClassName = cn('link', {
     'active': page === PageLink.Quest
   });
@@ -23,6 +28,11 @@ function Layout({children, page, authStatus}: LayoutProps): JSX.Element {
   const reservationClassName = cn('link', {
     'active': page === PageLink.MyQuests
   });
+
+  const handleSignoutClick = (evt: MouseEvent) => {
+    evt.preventDefault();
+    dispatch(logoutAction());
+  };
 
   return (
     <>
@@ -52,7 +62,12 @@ function Layout({children, page, authStatus}: LayoutProps): JSX.Element {
           <div className="header__side-nav">
 
             {authStatus === AuthorizationStatus.Auth ?
-              <Link className="btn btn--accent header__side-item" to={AppRoute.Root}>Выйти</Link>
+              <Link
+                className="btn btn--accent header__side-item"
+                to={AppRoute.Root}
+                onClick={handleSignoutClick}
+              >Выйти
+              </Link>
               :
               <Link className="btn header__side-item header__login-btn" to={AppRoute.Login}>Вход</Link>}
 

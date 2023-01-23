@@ -1,12 +1,8 @@
 import { Helmet } from 'react-helmet-async';
 import Layout from '../../components/layout/layout';
-import { AuthorizationStatus, PageLink } from '../../const';
+import { PageLink } from '../../const';
 
-type MyQuestsProps = {
-  authStatus: AuthorizationStatus;
-}
-
-function MyQuests({authStatus}: MyQuestsProps): JSX.Element {
+function MyQuests(): JSX.Element {
   return (
     <>
       <Helmet>
@@ -15,7 +11,7 @@ function MyQuests({authStatus}: MyQuestsProps): JSX.Element {
         </title>
       </Helmet>
       <div className="wrapper">
-        <Layout page={PageLink.MyQuests} authStatus={authStatus}>
+        <Layout page={PageLink.MyQuests}>
           <main className="page-content decorated-page">
             <div className="decorated-page__decor" aria-hidden="true">
               <picture>

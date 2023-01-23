@@ -1,13 +1,9 @@
 import { Helmet } from 'react-helmet-async';
 import Layout from '../../components/layout/layout';
 import Map from '../../components/map/map';
-import { AuthorizationStatus, PageLink } from '../../const';
+import { PageLink } from '../../const';
 
-type ContactProps = {
-  authStatus: AuthorizationStatus;
-}
-
-function Contact({authStatus}: ContactProps): JSX.Element {
+function Contact(): JSX.Element {
 
   return (
     <>
@@ -17,7 +13,7 @@ function Contact({authStatus}: ContactProps): JSX.Element {
         </title>
       </Helmet>
       <div className="wrapper">
-        <Layout page={PageLink.Contact} authStatus={authStatus}>
+        <Layout page={PageLink.Contact}>
           <main className="page-content decorated-page">
             <div className="decorated-page__decor" aria-hidden="true">
               <picture>

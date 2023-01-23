@@ -4,14 +4,14 @@ import { StatusCodes } from 'http-status-codes';
 import { APIRoute, AppRoute } from '../const';
 import { dropToken, saveToken } from '../services/token';
 import { AuthData } from '../types/auth-data';
-import { BookedQuestItem, BookingQuestInfo } from '../types/booking';
+import { BookedQuestItem, BookingQuestInfo, QuestBooking } from '../types/booking';
 import { QuestInfo, QuestItem } from '../types/quest';
 import { AppDispatch, State } from '../types/state';
 import { UserData } from '../types/user-data';
 import { redirectToRoute } from './action';
 import { pushNotification } from './notifications/notifications';
 
-export const fetchQuestsAction = createAsyncThunk<QuestItem[], string, {
+export const fetchQuestsAction = createAsyncThunk<QuestItem[], undefined, {
   dispatch: AppDispatch;
   state: State;
   extra: AxiosInstance;
@@ -63,7 +63,7 @@ export const fetchBookingQuestInfo = createAsyncThunk<BookingQuestInfo, string, 
 
       return data;
     } catch(err) {
-      dispatch(pushNotification({type: 'warning', message: 'Sorry, can not download reviews.'}));
+      dispatch(pushNotification({type: 'warning', message: 'Sorry, can not download booking form.'}));
 
       throw err;
     }
@@ -134,6 +134,25 @@ export const logoutAction = createAsyncThunk<void, undefined, {
       dropToken();
     } catch{
       dispatch(pushNotification({type: 'error', message: 'Cannot complete logout. Please, try again.'}));
+    }
+  }
+);
+
+export const postBookingQuestInfo = createAsyncThunk<BookedQuestItem, QuestBooking, {
+  dispatch: AppDispatch;
+  state: State;
+  extra: AxiosInstance;
+}>(
+  'quest/booking',
+  async(quest, {dispatch, extra: api}) => {
+    try {
+      const {data} = await api.post<BookedQuestItem>(`${APIRoute.Quests}/${quest.questId}${APIRoute.Booking}`);
+
+      return data;
+    } catch(err) {
+      dispatch(pushNotification({type: 'error', message: 'Can not send book quest. Please, try again'}));
+
+      throw err;
     }
   }
 );

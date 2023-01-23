@@ -78,3 +78,17 @@ export enum PageLink {
 
 export const URL_MARKER_DEFAULT = '/img/pin-default.svg';
 export const URL_MARKER_CURRENT = '/img/pin-active.svg';
+
+export const levelTranslation: {[key: string]: string} = {
+  hard: 'Сложный',
+  medium: 'Средний',
+  easy: 'Легкий'
+};
+
+export const genreTranslation: {[key: string]: string} = {
+  'adventures': 'приключения',
+  'detective': 'детектив',
+  'horror': 'ужасы',
+  'mystic': 'мистика',
+  'sci-fi': 'sci-fi'
+};

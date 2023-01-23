@@ -1,12 +1,6 @@
 import { generatePath, Link } from 'react-router-dom';
-import { AppRoute } from '../../const';
+import { AppRoute, levelTranslation } from '../../const';
 import { QuestItem } from '../../types/quest';
-
-const levelTranslation: {[key: string]: string} = {
-  hard: 'Сложный',
-  medium: 'Средний',
-  easy: 'Легкий'
-};
 
 type QuestCardProps = {
   quest: QuestItem;

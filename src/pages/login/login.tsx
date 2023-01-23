@@ -1,12 +1,9 @@
 import { Helmet } from 'react-helmet-async';
 import Layout from '../../components/layout/layout';
-import { AuthorizationStatus, PageLink } from '../../const';
+import LoginForm from '../../components/login-form/login-form';
+import { PageLink } from '../../const';
 
-type LoginProps = {
-  authStatus: AuthorizationStatus;
-}
-
-function Login({authStatus}: LoginProps): JSX.Element {
+function Login(): JSX.Element {
   return (
     <>
       <Helmet>
@@ -15,7 +12,7 @@ function Login({authStatus}: LoginProps): JSX.Element {
         </title>
       </Helmet>
       <div className="wrapper">
-        <Layout page={PageLink.Quest} authStatus={authStatus}>
+        <Layout page={PageLink.Quest}>
           <main className="decorated-page login">
             <div className="decorated-page__decor" aria-hidden="true">
               <picture>
@@ -24,33 +21,7 @@ function Login({authStatus}: LoginProps): JSX.Element {
             </div>
             <div className="container container--size-l">
               <div className="login__form">
-                <form className="login-form" action="https://echo.htmlacademy.ru/" method="post">
-                  <div className="login-form__inner-wrapper">
-                    <h1 className="title title--size-s login-form__title">Вход</h1>
-                    <div className="login-form__inputs">
-                      <div className="custom-input login-form__input">
-                        <label className="custom-input__label" htmlFor="email">E&nbsp;&ndash;&nbsp;mail</label>
-                        <input type="email" id="email" name="email" placeholder="Адрес электронной почты" required />
-                      </div>
-                      <div className="custom-input login-form__input">
-                        <label className="custom-input__label" htmlFor="password">Пароль</label>
-                        <input type="password" id="password" name="password" placeholder="Пароль" required />
-                      </div>
-                    </div>
-                    <button className="btn btn--accent btn--general login-form__submit" type="submit">Войти</button>
-                  </div>
-                  <label className="custom-checkbox login-form__checkbox">
-                    <input type="checkbox" id="id-order-agreement" name="user-agreement" required />
-                    <span className="custom-checkbox__icon">
-                      <svg width="20" height="17" aria-hidden="true">
-                        <use xlinkHref="#icon-tick" />
-                      </svg>
-                    </span>
-                    <span className="custom-checkbox__label">Я&nbsp;согласен с
-                      <a className="link link--active-silver link--underlined" href="/#">правилами обработки персональных данных</a>&nbsp;и пользовательским соглашением
-                    </span>
-                  </label>
-                </form>
+                <LoginForm />
               </div>
             </div>
           </main>

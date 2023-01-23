@@ -1,18 +1,14 @@
 import FilterForm from '../../components/filter-form/filter-form';
 import Layout from '../../components/layout/layout';
 import { Helmet } from 'react-helmet-async';
-import { AuthorizationStatus, PageLink } from '../../const';
+import { PageLink } from '../../const';
 import { useAppSelector } from '../../hooks';
 import QuestsList from '../../components/quests-list/quests-list';
 import { getQuestsByGenre, getQuestsByLevel } from '../../quest';
 import { getGenre, getLevel } from '../../store/ui/selectors';
 import { getQuests } from '../../store/quests/selectors';
 
-type MainProps = {
-  authStatus: AuthorizationStatus;
-}
-
-function Main({authStatus}: MainProps): JSX.Element {
+function Main(): JSX.Element {
   const currentLevelFilter = useAppSelector(getLevel);
   const currentGenreFilter = useAppSelector(getGenre);
   const quests = useAppSelector(getQuests);
@@ -28,7 +24,7 @@ function Main({authStatus}: MainProps): JSX.Element {
         </title>
       </Helmet>
       <div className="wrapper">
-        <Layout page={PageLink.Quest} authStatus={authStatus}>
+        <Layout page={PageLink.Quest}>
           <main className="page-content">
             <div className="container">
               <div className="page-content__title-wrapper">
