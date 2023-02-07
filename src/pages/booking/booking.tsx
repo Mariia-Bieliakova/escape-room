@@ -58,7 +58,7 @@ function Booking(): JSX.Element {
                   <p className="booking-map__address">Вы&nbsp;выбрали: наб. реки Карповки&nbsp;5, лит&nbsp;П, м. Петроградская</p>
                 </div>
               </div>
-              <BookingForm bookingInfo={bookingInfo} questId={quest.id}/>
+              <BookingForm bookingInfo={bookingInfo} quest={quest}/>
             </div>
           </main>
         </Layout>

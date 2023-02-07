@@ -2,10 +2,11 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { useAppDispatch } from '../../hooks';
 import { postBookingQuestInfo } from '../../store/api-actions';
 import { BookingQuestInfo } from '../../types/booking';
+import { QuestInfo } from '../../types/quest';
 
 type BookingFormProps = {
   bookingInfo: BookingQuestInfo;
-  questId: number;
+  quest: QuestInfo;
 }
 
 type FormValues = {
@@ -20,14 +21,17 @@ type FormValues = {
   questId: number;
 }
 
-function BookingForm({bookingInfo, questId}: BookingFormProps): JSX.Element {
+function BookingForm({bookingInfo, quest}: BookingFormProps): JSX.Element {
   const dispatch = useAppDispatch();
-  const {register, handleSubmit, formState: {isValid}} = useForm<FormValues>({defaultValues: {id: bookingInfo.id, questId: questId}});
+  const {register, handleSubmit, formState: {isValid}, setValue} = useForm<FormValues>();
+  const {id, peopleMinMax} = quest;
 
   const {today, tomorrow} = bookingInfo.slots;
 
   const onSubmit: SubmitHandler<FormValues> = (values) => {
-    dispatch(postBookingQuestInfo({...values}));
+    const payload = {...values, id: bookingInfo.id, questId: id, locationId: 1};
+
+    dispatch(postBookingQuestInfo({...payload}));
   };
 
   return (
@@ -42,9 +46,6 @@ function BookingForm({bookingInfo, questId}: BookingFormProps): JSX.Element {
         <legend className="visually-hidden">Выбор даты и времени</legend>
         <fieldset
           className="booking-form__date-section"
-          {...register('date', {
-            value: 'today'
-          })}
         >
           <legend className="booking-form__date-title">Сегодня</legend>
           <div className="booking-form__date-inner-wrapper">
@@ -55,11 +56,11 @@ function BookingForm({bookingInfo, questId}: BookingFormProps): JSX.Element {
                   <input
                     type="radio"
                     id={`today${time}`}
+                    value={time}
                     {...register('time', {
-                      disabled: !isAvailable,
-                      required: true,
-                      value: time
+                      disabled: !isAvailable
                     })}
+                    onChange={()=> setValue('date', 'today')}
                   />
                   <span className="custom-radio__label">{time}</span>
                 </label>
@@ -67,11 +68,7 @@ function BookingForm({bookingInfo, questId}: BookingFormProps): JSX.Element {
             })}
           </div>
         </fieldset>
-        <fieldset className="booking-form__date-section"
-          {...register('date', {
-            value: 'tomorrow'
-          })}
-        >
+        <fieldset className="booking-form__date-section">
           <legend className="booking-form__date-title">Завтра</legend>
           <div className="booking-form__date-inner-wrapper">
             {tomorrow.map((slot) => {
@@ -81,11 +78,11 @@ function BookingForm({bookingInfo, questId}: BookingFormProps): JSX.Element {
                   <input
                     type="radio"
                     id={`tomorrow${time}`}
+                    value={time}
                     {...register('time', {
-                      disabled: !isAvailable,
-                      required: true,
-                      value: time
+                      disabled: !isAvailable
                     })}
+                    onChange={()=> setValue('date', 'tomorrow')}
                   />
                   <span className="custom-radio__label">{time}</span>
                 </label>
@@ -127,7 +124,9 @@ function BookingForm({bookingInfo, questId}: BookingFormProps): JSX.Element {
             id="person"
             placeholder="Количество участников"
             {...register('peopleCount', {
-              required: true
+              required: true,
+              min: peopleMinMax[0],
+              max: peopleMinMax[1]
             })}
           />
         </div>
@@ -136,7 +135,6 @@ function BookingForm({bookingInfo, questId}: BookingFormProps): JSX.Element {
             type="checkbox"
             id="children"
             {...register('withChildren')}
-            checked
           />
           <span className="custom-checkbox__icon">
             <svg width="20" height="17" aria-hidden="true">
